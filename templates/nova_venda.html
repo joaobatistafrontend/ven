@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Venda</title>
+</head>
+<body>
+    <h2>Nova Venda - {{ tipo_venda.tipo }}</h2>
+    <form method="post" action="{% url 'nova_venda' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="tipo_venda" value="{{ tipo_venda.id }}">
+        <button type="submit">Salvar e Continuar</button>
+    </form>
+</body>
+</html>

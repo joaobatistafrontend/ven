@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Venda</title>
+</head>
+<body>
+    <h1>Finalizar Venda</h1>
+    <h2>Venda ID: {{ venda.identificador_unico }}</h2>
+
+    <h3>Itens da Venda</h3>
+    <ul>
+        {% for item in itens_venda %}
+            <li>{{ item.produto.nome }} - Quantidade: {{ item.qtd }} - Total: R$ {{ item.total }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar Venda</button>
+    </form>
+    
+    <a href="{% url 'index' %}">Cancelar e Voltar</a>
+</body>
+</html>

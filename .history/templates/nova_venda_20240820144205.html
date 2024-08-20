@@ -1,0 +1,6 @@
+<h2>Nova Venda - {{ tipo_venda.tipo }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Continuar Venda</button>
+</form>

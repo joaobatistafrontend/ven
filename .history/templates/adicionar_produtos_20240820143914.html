@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produtos à Venda</title>
+</head>
+<body>
+    <h1>Adicionar Produtos à Venda</h1>
+    <h2>Venda ID: {{ venda.id }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="produto">Selecione o Produto:</label>
+        <select name="produto_id" id="produto">
+            {% for produto in produtos %}
+                <option value="{{ produto.id }}">{{ produto.nome }} - R$ {{ produto.valor }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" name="quantidade" id="quantidade" value="1" min="1">
+
+        <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <h2>Itens Adicionados</h2>
+    <ul>
+        {% for item in venda.itens.all %}
+            <li>{{ item.produto.nome }} - Quantidade: {{ item.qtd }} - Total: R$ {{ item.total }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'finalizar_venda' venda.id %}">Finalizar Venda</a>
+</body>
+</html>

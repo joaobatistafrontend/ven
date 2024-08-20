@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecionar Tipo de Venda</title>
+</head>
+<body>
+    <h1>Selecionar Tipo de Venda</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="tipo_venda">Tipo de Venda:</label>
+        <select name="tipo_venda" id="tipo_venda">
+            {% for tipo in tipo_venda %}
+                <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Continuar</button>
+    </form>
+
+    <h2>Vendas Recentes</h2>
+    <ul>
+        {% for venda in todas_vendas %}
+            <li>{{ venda }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
